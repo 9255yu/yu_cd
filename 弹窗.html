@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div.btn {
+      height: 50px;
+      width: 90px;
+      background-color: rgb(240, 240, 229);
+      border: solid 1px rgb(177, 175, 175);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    div.btn:hover {
+      background-color: rgb(175, 178, 180);
+      color: white
+    }
+
+    p {
+      font-size: 14px;
+      text-align: center
+    }
+
+    .cx {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgb(117, 116, 116);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    button {
+      position: absolute;
+      width: 40px;
+      height: 30px;
+      left: 78%;
+      top: 3%
+    }
+  </style>
+</head>
+
+<body>
+  <div class="btn">
+    <p>点击</p>
+  </div>
+  <div class="cx">
+    <button class="x">X</button>
+  </div>
+  <script>
+    (function () {
+      var btnNode = document.getElementsByClassName('btn')[0];
+      var cx = document.getElementsByClassName('cx')[0];
+      var xNode = document.getElementsByClassName('x')[0];
+      var i = 1;
+      btnNode.onclick = function () {//单击击btnNode显示弹窗
+        cx.style.display = "block";
+        xNode.onclick = function () {//同时弹窗上面也有一个删除自身的按钮
+          cx.style.display = "none"
+        }
+        if (i % 2 == 0) {//如果双击则会消失
+          cx.style.display = "none";
+          console.log(i)
+        }
+        i++;
+      }
+
+      cx.onmouseout = function () {//如果鼠标从弹窗上面移动出去则"单击"按钮会显示
+        btnNode.style.display = "none"
+      }
+      window.onclick = function () {//在空白地方单击一下则“单击”按钮会继续显现
+        btnNode.style.display = 'block';
+      }
+      // 这都是什么啊。。。。
+    })()
+  </script>
+</body>
+
+</html>
